@@ -5,8 +5,7 @@
 </script>
 
 <img
-    in:fly={{ x: window.innerWidth, duration: 800 }}
-    out:fly={{ x: -window.innerWidth, duration: 800 }}
+    transition:fly={{ x: window.innerWidth, duration: 800 }}
     src={planet.image}
     alt={planet.name}
 />

@@ -8,6 +8,14 @@
     let planetIndex = 0;
     let planet: Planet = Planets[planetIndex] as unknown as Planet;
 
+    const previousPlanet = () => {
+        planetIndex--;
+        if (planetIndex < 0) {
+            planetIndex = Planets.length - 1;
+        }
+        planet = Planets[planetIndex] as unknown as Planet;
+    };
+
     const nextPlanet = () => {
         planetIndex = (planetIndex + 1) % Planets.length;
         planet = Planets[planetIndex] as unknown as Planet;
@@ -22,6 +30,11 @@
     <div class="planet-info">
         <div class="head">
             <div class="content">
+                <button on:click={previousPlanet}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </button>
                 <h2>{planet.name}</h2>
                 <button on:click={nextPlanet}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
@@ -47,8 +60,8 @@
     </div>
     <div class="planets">
     {#key planet}
-        <PlanetView planet={planet}/>
-        {/key}
+        <PlanetView planet={planet} />
+    {/key}
     </div>
 </section>
 
